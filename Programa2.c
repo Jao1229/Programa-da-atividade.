@@ -116,11 +116,11 @@ int buscaBinaria(Registro *dados, long alvo, int tamanho) {
     while (inicio <= fim) {
         int meio = (inicio + fim) / 2;
         if (dados[meio].timestamp == alvo) return meio;
-        else if (dados[meio].timestamp > alvo) inicio = meio + 1;
-        else fim = meio - 1;
+        else if (dados[meio].timestamp < alvo) fim = meio - 1;
+        else inicio = meio + 1;
     }
 
-    return -1; // não encontrado
+    return -1; 
 }
 
 // Conversão de string para timestamp
