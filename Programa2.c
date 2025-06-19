@@ -13,13 +13,12 @@ typedef struct {
 typedef struct {
     int dia, mes, ano, hora, minuto, segundo;
 } RegistroHora;
-
 // Protótipos de funções
 int contarLinhas(char *nomeArquivo);
 int carregarRegistros(Registro *dados, int total, char *nomeArquivo);
 int buscaBinaria(Registro *dados, long alvo, int tamanho);
 long converterParaTimestamp(char *dataHora);
-void decomporTimestamp(Registro *dados, RegistroHora *horas, int total);
+int decomporTimestamp(Registro *dados, RegistroHora *horas, int total);
 void exibirResultado(int indice, long alvo, Registro *dados, RegistroHora *horas, int tamanho);
 
 // Função principal
@@ -77,6 +76,12 @@ int main(int argc, char *argv[]) {
 
 // Conta linhas do arquivo
 int contarLinhas(char *nomeArquivo) {
+
+    if (nomeArquivo == NULL)
+    {
+         printf("Erro ao carregar o nome do arquivo\n");
+        return -1;
+    }
     FILE *f = fopen(nomeArquivo, "r");
     if (!f) return -1;
 
@@ -89,6 +94,19 @@ int contarLinhas(char *nomeArquivo) {
 
 // Carrega dados para a struct
 int carregarRegistros(Registro *dados, int total, char *nomeArquivo) {
+
+      if (dados == NULL)
+    {
+        printf("Erro ao carregar o registro\n");
+        return -1;
+    }
+
+    if (nomeArquivo == NULL)
+    {
+         printf("Erro ao carregar o nome do arquivo\n");
+        return -1;
+    }
+
     FILE *f = fopen(nomeArquivo, "r");
     if (!f) return -1;
 
@@ -111,6 +129,13 @@ int carregarRegistros(Registro *dados, int total, char *nomeArquivo) {
 
 // Busca binária
 int buscaBinaria(Registro *dados, long alvo, int tamanho) {
+
+      if (dados == NULL)
+    {
+        printf("Erro ao carregar o registro\n");
+        return -1;
+    }
+
     int inicio = 0, fim = tamanho - 1;
 
     while (inicio <= fim) {
@@ -125,6 +150,12 @@ int buscaBinaria(Registro *dados, long alvo, int tamanho) {
 
 // Conversão de string para timestamp
 long converterParaTimestamp(char *entrada) {
+      if (entrada == NULL)
+    {
+        printf("Erro ao carregar a Data e Hora\n");
+        return -1;
+    }
+
     int d, m, y, h, min, s;
     if (sscanf(entrada, "%d/%d/%d-%d:%d:%d", &d, &m, &y, &h, &min, &s) != 6)
         return -1;
@@ -137,7 +168,20 @@ long converterParaTimestamp(char *entrada) {
 }
 
 // Converte os timestamps da struct para data/hora legível
-void decomporTimestamp(Registro *dados, RegistroHora *horas, int total) {
+int decomporTimestamp(Registro *dados, RegistroHora *horas, int total) {
+
+      if (dados == NULL)
+    {
+        printf("Erro ao carregar a estrutura de registro\n");
+        return -1;
+    }
+
+    if (horas == NULL)
+    {
+         printf("Erro ao carregar a estrutura de Hora\n");
+        return -1;
+    }
+
     for (int i = 0; i < total; i++) {
         time_t temp = dados[i].timestamp;
         struct tm *info = localtime(&temp);
@@ -148,10 +192,12 @@ void decomporTimestamp(Registro *dados, RegistroHora *horas, int total) {
         horas[i].minuto = info->tm_min;
         horas[i].segundo = info->tm_sec;
     }
+    return 0;
 }
 
 // Exibe o resultado da busca
 void exibirResultado(int indice, long alvo, Registro *dados, RegistroHora *horas, int tamanho) {
+
     if (indice >= 0) {
         printf("Registro exato encontrado:\n");
         printf("%02d/%02d/%04d %02d:%02d:%02d %s %s\n",
