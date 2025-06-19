@@ -12,7 +12,9 @@ Tem como objetivo permitir a consulta da leitura de um sensor específico, com b
 
 A execução do programa é feita via terminal, sendo obrigatório informar dois argumentos: o nome do arquivo contendo os dados de um sensor e a data/hora desejada no formato dd/mm/aaaa-hh:mm:ss. Um exemplo de uso seria: .\programa2 dados_sensores.txt "05/02/2003-10:00:00"
 
-O Programa 3 é responsável por gerar um arquivo de medições aleatores presente nos sensores. O usuário deve informar o nome do programa, o intervalo de datas e horas para as amostras(talvez uso de " entorno de datas e hora), os tipos de dados que cada sensor representa. O arquivo gerado terá a extensão .txt. 
+O Programa 3
+
+E responsável por gerar um arquivo de medições aleatores presente nos sensores. O usuário deve informar o nome do programa, o intervalo de datas e horas para as amostras(talvez uso de " entorno de datas e hora), os tipos de dados que cada sensor representa. O arquivo gerado terá a extensão .txt. 
 Ex: .\programa3 "01/01/2001-09:00:00" "19/05/2005-17:00:00" LUX TEXTO PRESSAO
 Outros termos alem de LUZ ou PRESSAO tem tambem UMID TEMP
 O programa cria então 2000 leituras aleatórias para cada sensor, com timestamps gerados aleatoriamente dentro do intervalo informado, respeitando os tipos de dados especificados para cada sensor.
