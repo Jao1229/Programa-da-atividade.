@@ -4,7 +4,7 @@ Tem como objetivo realizar a organização dos dados brutos de sensores, estrutu
 
 Ao final da execução, o programa gera arquivos individuais para cada sensor  encontrado no arquivo original, contendo somente os dados correspondentes àquele sensor, todos já organizados do mais recente para o mais antigo. Essa estrutura facilita a realização de buscas e análises posteriores.
 
-Para executar o programa, basta digitar no terminal de comando: .\programa1 dados_sensores.txt. Vale destacar que, durante os testes realizados, foi observado que em alguns computadores (incluindo o do autor do código), foi necessário utilizar o prefixo .\ antes do nome do programa e, em casos onde os parâmetros envolviam números, foi preciso utilizar aspas ao redor do nome do arquivo (por exemplo: "dados_sensores_01.txt"). Em outros sistemas, no entanto, a execução ocorreu normalmente utilizando apenas o comando padrão, como ./programa1.exe dados_sensores.txt, sem a necessidade de ajustes adicionais.
+Para executar o programa, basta digitar no terminal de comando: .\programa1 dados_sensores.txt. Vale destacar que, durante os testes realizados, foi observado que em alguns computadores (incluindo o do autor do código), foi necessário utilizar o prefixo .\ antes do nome do programa e, em casos onde os parâmetros envolviam números, foi preciso utilizar aspas ao redor do nome do arquivo (por exemplo: ""19/06/2025-17:00:00""). Em outros sistemas, no entanto, a execução ocorreu normalmente utilizando apenas o comando padrão, como ./programa1.exe dados_sensores.txt, sem a necessidade de ajustes adicionais.
 
 Programa 2
 
