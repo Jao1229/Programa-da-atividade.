@@ -76,6 +76,19 @@ int contarLinhasArquivo(char *argv[]) {
 }
 
 int carregarRegistros(Registro *registros, int total, char *nomeArquivo) {
+    if (registros == NULL)
+    {
+        printf("Erro ao carregar o registro\n");
+        return -1;
+    }
+
+    if (nomeArquivo == NULL)
+    {
+         printf("Erro ao carregar o nome do arquivo\n");
+        return -1;
+    }
+    
+    
     FILE *file = fopen(nomeArquivo, "r");
     if (!file) return -1;
     char linha[128];
@@ -87,10 +100,13 @@ int carregarRegistros(Registro *registros, int total, char *nomeArquivo) {
         char *t = strtok(linha, " ");
         char *s = strtok(NULL, " ");
         char *v = strtok(NULL, "\n");
-        if (!t || !s || !v) {
-            fclose(file);
-            return -1; // linha inválida
-        }
+        if (t == NULL || s == NULL || v == NULL) {
+            registros[i].timestamp = 0;
+            strcpy(registros[i].sensorID, "");
+            printf("Linha com %d esta com problema\n", i);
+            continue; 
+        } 
+        
         registros[i].timestamp = strtol(t, NULL, 10);
         strncpy(registros[i].sensorID, s, sizeof(registros[i].sensorID)-1);
         registros[i].sensorID[sizeof(registros[i].sensorID)-1] = '\0';
@@ -103,6 +119,13 @@ int carregarRegistros(Registro *registros, int total, char *nomeArquivo) {
 
 // Função para checar se arquivo existe
 int arquivoExiste(const char *nomeArquivo) {
+
+      if (nomeArquivo == NULL)
+    {
+         printf("Erro ao carregar o nome do arquivo\n");
+        return -1;
+    }
+
     FILE *f = fopen(nomeArquivo, "r");
     if (f) {
         fclose(f);
@@ -122,10 +145,23 @@ int cmpRegistros(const void *a, const void *b) {
 
 
 void ordenarPorTempo(Registro *lista, int total) {
+      
     qsort(lista, total, sizeof(Registro), cmpRegistros);
 }
 
 int salvarArquivoSensor(Registro *lista, int total, const char *nomeSensor) {
+
+      if (lista == NULL)
+    {
+        printf("Erro ao carregar a lista\n");
+        return -1;
+    }
+
+    if (nomeSensor == NULL)
+    {
+         printf("Erro ao carregar o nome do sensor\n");
+        return -1;
+    }
     char nomeArquivo[64];
     snprintf(nomeArquivo, sizeof(nomeArquivo), "%s.txt", nomeSensor);
 
@@ -154,6 +190,13 @@ int salvarArquivoSensor(Registro *lista, int total, const char *nomeSensor) {
 }
 
 int separarSensores(Registro *registros, int total) {
+
+      if (registros == NULL)
+    {
+        printf("Erro ao carregar o registro\n");
+        return -1;
+    }
+
     bool aindaTemSensor = true;
 
     while (aindaTemSensor) {
