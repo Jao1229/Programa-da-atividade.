@@ -16,7 +16,8 @@ O Programa 3
 
 E responsável por gerar um arquivo de medições aleatores presente nos sensores. O usuário deve informar o nome do programa, o intervalo de datas e horas para as amostras(talvez uso de " entorno de datas e hora), os tipos de dados que cada sensor representa. O arquivo gerado terá a extensão .txt. 
 Ex: .\programa3 "01/01/2001-09:00:00" "19/05/2005-17:00:00" LUX TEXTO PRESSAO
-Outros termos alem de LUZ ou PRESSAO tem tambem UMID TEMP
+Outros termos alem de LUZ ou PRESSAO tem tambem UMID TEMP.
+Alem de possuir os tipos de dados como CONJ_Z representa o int, CONJ_Q que representa o float, BINARIO que representa o bool e o TEXTO que representa a string.
 O programa cria então 2000 leituras aleatórias para cada sensor, com timestamps gerados aleatoriamente dentro do intervalo informado, respeitando os tipos de dados especificados para cada sensor.
 
 Ao finalizar a execução com sucesso, o programa exibe a mensagem.
